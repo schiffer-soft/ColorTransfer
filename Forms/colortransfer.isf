@@ -18,6 +18,7 @@ GUICtrlSetOnEvent(-1,"_button_inputfile")
 GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
 GUICtrlSetColor(-1,"0xFFFFFF")
 GUICtrlSetBkColor(-1,"0xFA6831")
+GUICtrlSetTip(-1,"Select the input file.")
 GUICtrlCreateLabel("",10,52,179,180,-1,-1)
 GUICtrlSetState(-1,$GUI_SHOW)
 GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
@@ -154,6 +155,7 @@ GUICtrlSetState(-1,$GUI_SHOW)
 GUICtrlSetFont(-1,10,400,4,"MS Sans Serif")
 GUICtrlSetColor(-1,"0x5B7AD8")
 GUICtrlSetBkColor(-1,"-2")
+GUICtrlSetTip(-1,"Get the current version.")
 GUICtrlSetCursor(-1, 0)
 $h_button_ConvertSave = GUICtrlCreateButton("Convert && Save as ...",515,201,147,30,-1,-1)
 GUICtrlSetOnEvent(-1,"_ConvertSave")
@@ -161,6 +163,7 @@ GUICtrlSetState(-1,BitOr($GUI_SHOW,$GUI_DISABLE))
 GUICtrlSetFont(-1,8,700,0,"MS Sans Serif")
 GUICtrlSetColor(-1,"0xFFFFFF")
 GUICtrlSetBkColor(-1,"0xFA6831")
+GUICtrlSetTip(-1,"Convert and save the outputfile.")
 $h_button_ext5_u = GUICtrlCreateButton("˄",415,197,27,27,-1,-1)
 GUICtrlSetOnEvent(-1,"button_ext5_u")
 GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
@@ -172,12 +175,14 @@ GUICtrlSetOnEvent(-1,"_paypalme")
 GUICtrlSetFont(-1,10,400,4,"MS Sans Serif")
 GUICtrlSetColor(-1,"0x5B7AD8")
 GUICtrlSetBkColor(-1,"-2")
+GUICtrlSetTip(-1,"Thanks for us!")
 GUICtrlSetCursor(-1, 0)
 GUICtrlCreateLabel("schiffer-soft",522,403,68,15,-1,-1)
 GUICtrlSetOnEvent(-1,"_Xschiffersoft")
 GUICtrlSetFont(-1,10,400,4,"MS Sans Serif")
 GUICtrlSetColor(-1,"0x5B7AD8")
 GUICtrlSetBkColor(-1,"-2")
+GUICtrlSetTip(-1,"Got to schiffer-soft on X.")
 GUICtrlSetCursor(-1, 0)
 GUICtrlCreateLabel("&&",594,404,10,15,-1,-1)
 GUICtrlSetState(-1,$GUI_SHOW)
@@ -194,6 +199,7 @@ GUICtrlSetOnEvent(-1,"_Xmaxklaxx")
 GUICtrlSetFont(-1,10,400,4,"MS Sans Serif")
 GUICtrlSetColor(-1,"0x5B7AD8")
 GUICtrlSetBkColor(-1,"-2")
+GUICtrlSetTip(-1,"Go to Maxklaxx on GitHub")
 GUICtrlSetCursor(-1, 0)
 GUICtrlCreateButton("🔗 Help",600,8,60,27,-1,-1)
 GUICtrlSetOnEvent(-1,"_button_help")
@@ -288,7 +294,7 @@ font=MS Sans Serif
 fontsize=10
 fontstyle=700
 fontattribute=0
-tooltip=
+tooltip=Select the input file.
 bgimage=
 textcolour=0xFFFFFF
 id=$h_button_inputfile
@@ -1303,7 +1309,7 @@ font=MS Sans Serif
 fontsize=10
 fontstyle=400
 fontattribute=4
-tooltip=
+tooltip=Get the current version.
 bgimage=
 textcolour=0x5B7AD8
 id=$h_label_version
@@ -1332,7 +1338,7 @@ font=MS Sans Serif
 fontsize=8
 fontstyle=700
 fontattribute=0
-tooltip=
+tooltip=Convert and save the outputfile.
 bgimage=
 textcolour=0xFFFFFF
 id=$h_button_ConvertSave
@@ -1390,7 +1396,7 @@ font=MS Sans Serif
 fontsize=10
 fontstyle=400
 fontattribute=4
-tooltip=
+tooltip=Thanks for us!
 bgimage=
 textcolour=0x5B7AD8
 id=
@@ -1419,7 +1425,7 @@ font=MS Sans Serif
 fontsize=10
 fontstyle=400
 fontattribute=4
-tooltip=
+tooltip=Got to schiffer-soft on X.
 bgimage=
 textcolour=0x5B7AD8
 id=
@@ -1477,7 +1483,7 @@ font=MS Sans Serif
 fontsize=10
 fontstyle=400
 fontattribute=4
-tooltip=
+tooltip=Go to Maxklaxx on GitHub
 bgimage=
 textcolour=0x5B7AD8
 id=

@@ -1,6 +1,6 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Res_Description=ColoTransfer transfers colors from Fusion360 to PrusaSlicer
-#AutoIt3Wrapper_Res_Fileversion=0.1.0.39
+#AutoIt3Wrapper_Res_Fileversion=0.1.0.41
 #AutoIt3Wrapper_Res_ProductVersion=1.0
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_ProductName=ColorTransfer
@@ -23,7 +23,7 @@ Opt("GuiOnEventMode", 1)
 _GDIPlus_Startup()
 
 DirCreate(@AppDataDir & "\colortransfer")
-FileInstall("colortransfer.exe", @AppDataDir & "\colortransfer\colortransfer.exe" )
+FileInstall("colortransfer.exe", @AppDataDir & "\colortransfer\colortransfer.exe", 1 )
 FileInstall("colortransfer.jpg", @AppDataDir & "\colortransfer\colortransfer.jpg" )
 
 Global Const $ProgName = "ColorTransfer"
@@ -118,7 +118,7 @@ Func _preload3mf($PathToInput3mf)
 	
 	;Vorschaubild setzen
 	_toCMD('Loading Fusion 360 preview image.')
-	$Bmp_Logo = _GDIPlus_BitmapCreateFromMemory(_Base64StringEx($sOutputArray[7]), True)
+	$Bmp_Logo = _GDIPlus_BitmapCreateFromMemory(_Base64StringEx($sOutputArray[$sOutputArray[0] -2]), True)
 	$hBitmap = _GDIPlus_BitmapCreateFromHBITMAP($Bmp_Logo)
 	$hBitmap2 = _GDIPlus_ImageResize($hBitmap,144,144)
 	$hHBitmapM=_GDIPlus_BitmapCreateHBITMAPFromBitmap($hBitmap2)
@@ -173,7 +173,9 @@ Func _ConvertSave()
 	ConsoleWrite($ColorsNew & @CRLF)
 ;~ 	_toCMD('New Colors: ' &$ColorsNew)
 	
-	Local $iPID = Run($sExePath & ' "' & $PathToInput3mf & '" "' & $PathToOutput3mf & '" ' & '"'& $ColorsNew& '"', @WorkingDir, @SW_HIDE, $STDOUT_CHILD)
+	Local $CMD =  $sExePath & ' "' & $PathToInput3mf & '" "' & $PathToOutput3mf & '" ' & '"'& $ColorsNew& '"'
+	ConsoleWrite("CMD: " & $CMD & @CRLF)
+	Local $iPID = Run($CMD, @WorkingDir, @SW_HIDE, $STDOUT_CHILD)
 	Local $sOutput = ""
 	While True
 		$sLine = StdOutRead($iPID)
