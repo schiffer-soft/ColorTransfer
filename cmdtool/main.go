@@ -87,12 +87,16 @@ func main() {
 				os.Exit(1)
 				return
 			}
-			known[check] = true
 			if extruders[check] == 0 {
+				if len(known) == len(extruders) {
+					sp = sp[:len(known)] // trunc too many colors
+					break
+				}
 				fmt.Println("Error: Extruder-Color not found:", check)
 				os.Exit(1)
 				return
 			}
+			known[check] = true
 			extruders[check] = i + 1
 		}
 		if len(sp) != len(extruders) {
