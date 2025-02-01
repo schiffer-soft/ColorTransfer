@@ -1,5 +1,9 @@
 # Fusion 360 to PrusaSlicer 3MF Converter
 
+You can find the files here:
+
+https://github.com/schiffer-soft/ColorTransfer/releases
+
 ![ColorTransfer v0 1 0 32](https://github.com/user-attachments/assets/9b25bbde-6d54-413d-8702-053ee55e70e7)
 
 ## Overview
