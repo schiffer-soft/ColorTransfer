@@ -1,0 +1,1553 @@
+; -- Created with ISN Form Studio 2 for ISN AutoIt Studio -- ;
+#include <StaticConstants.au3>
+#include <GUIConstantsEx.au3>
+#include <WindowsConstants.au3>
+#Include <GuiButton.au3>
+#include <EditConstants.au3>
+
+$colortransfer = GUICreate("ColorTransferGui",676,456,-1,-1,$WS_SYSMENU,-1)
+GUISetBkColor(0x2B2B2B,$colortransfer)
+GUISetOnEvent($GUI_EVENT_CLOSE, "_exit", $colortransfer)
+$h_inputfile = GUICtrlCreateInput("Select inputfile ...",10,8,535,25,$ES_READONLY,$WS_EX_CLIENTEDGE)
+GUICtrlSetState(-1,BitOr($GUI_SHOW,$GUI_ENABLE,$GUI_DISABLE))
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0x2B2B2B")
+$h_button_inputfile = GUICtrlCreateButton("...",550,8,40,27,-1,-1)
+GUICtrlSetOnEvent(-1,"_button_inputfile")
+GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0xFA6831")
+GUICtrlCreateLabel("",10,52,179,180,-1,-1)
+GUICtrlSetState(-1,$GUI_SHOW)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetBkColor(-1,"0x555555")
+GUICtrlCreateLabel("Fusion 360 3mf",10,50,160,20,BitOr($SS_CENTER,$SS_CENTERIMAGE),-1)
+GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("Color 1",20,80,45,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("Color 2",20,110,45,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("Color 3",20,140,45,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("Color 4",20,170,45,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("Color 5",20,200,45,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+$h_lable_c1 = GUICtrlCreateLabel("",70,80,100,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+$h_lable_c2 = GUICtrlCreateLabel("",70,110,100,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+$h_lable_c3 = GUICtrlCreateLabel("",70,140,100,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+$h_lable_c4 = GUICtrlCreateLabel("",70,170,100,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+$h_lable_c5 = GUICtrlCreateLabel("",70,200,100,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel(">",189,111,52,54,BitOr($SS_CENTER,$SS_CENTERIMAGE),-1)
+GUICtrlSetFont(-1,50,700,0,"@Arial Unicode MS")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("",240,50,260,180,-1,-1)
+GUICtrlSetState(-1,BitOr($GUI_SHOW,$GUI_DISABLE))
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetBkColor(-1,"0x555555")
+GUICtrlCreateLabel("Prusa Slicer 3mf",240,52,260,20,BitOr($SS_CENTER,$SS_CENTERIMAGE),-1)
+GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("Extruder 1",249,81,50,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("Extruder 2",249,111,50,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("Extruder 3",249,141,50,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("Extruder 4",249,171,50,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("Extruder 5",249,201,50,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+$h_lable_e1 = GUICtrlCreateLabel("",312,81,94,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+$h_lable_e2 = GUICtrlCreateLabel("",312,111,94,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+$h_lable_e3 = GUICtrlCreateLabel("",312,141,94,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+$h_lable_e4 = GUICtrlCreateLabel("",312,171,94,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+$h_lable_e5 = GUICtrlCreateLabel("",312,201,94,20,$SS_CENTERIMAGE,-1)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"-2")
+$h_console = GUICtrlCreateEdit("",10,247,653,150,BitOr($ES_READONLY,$ES_NOHIDESEL,$ES_MULTILINE,$WS_VSCROLL),$WS_EX_STATICEDGE)
+GUICtrlSetState(-1,$GUI_SHOW)
+GUICtrlSetFont(-1,9,400,0,"Lucida Console")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0x555555")
+$h_button_ext1_d = GUICtrlCreateButton("˅",448,76,27,27,-1,-1)
+GUICtrlSetOnEvent(-1,"button_ext1_d")
+GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0xFA6831")
+$h_button_ext2_d = GUICtrlCreateButton("˅",448,107,27,27,-1,-1)
+GUICtrlSetOnEvent(-1,"button_ext2_d")
+GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0xFA6831")
+$h_button_ext2_u = GUICtrlCreateButton("˄",415,107,27,27,-1,-1)
+GUICtrlSetOnEvent(-1,"button_ext2_u")
+GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0xFA6831")
+$h_button_ext3_u = GUICtrlCreateButton("˅",448,137,27,27,-1,-1)
+GUICtrlSetOnEvent(-1,"button_ext3_d")
+GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0xFA6831")
+$h_button_ext3_d = GUICtrlCreateButton("˄",415,137,27,27,-1,-1)
+GUICtrlSetOnEvent(-1,"button_ext3_u")
+GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0xFA6831")
+$h_button_ext4_d = GUICtrlCreateButton("˅",448,167,27,27,-1,-1)
+GUICtrlSetOnEvent(-1,"button_ext4_d")
+GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0xFA6831")
+$h_button_ext4_u = GUICtrlCreateButton("˄",415,167,27,27,-1,-1)
+GUICtrlSetOnEvent(-1,"button_ext4_u")
+GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0xFA6831")
+$h_label_version = GUICtrlCreateLabel("v 0.0.0.0",406,404,59,15,$SS_RIGHT,-1)
+GUICtrlSetOnEvent(-1,"_currentversionlink")
+GUICtrlSetState(-1,$GUI_SHOW)
+GUICtrlSetFont(-1,10,400,4,"MS Sans Serif")
+GUICtrlSetColor(-1,"0x5B7AD8")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlSetCursor(-1, 0)
+$h_button_ConvertSave = GUICtrlCreateButton("Convert && Save as ...",515,201,147,30,-1,-1)
+GUICtrlSetOnEvent(-1,"_ConvertSave")
+GUICtrlSetState(-1,BitOr($GUI_SHOW,$GUI_DISABLE))
+GUICtrlSetFont(-1,8,700,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0xFA6831")
+$h_button_ext5_u = GUICtrlCreateButton("˄",415,197,27,27,-1,-1)
+GUICtrlSetOnEvent(-1,"button_ext5_u")
+GUICtrlSetFont(-1,10,700,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0xFA6831")
+$h_image = GUICtrlCreatePic("",516,50,144,144,-1,-1)
+GUICtrlCreateLabel("Like it? Buy us a coffee ;-)",10,404,160,15,-1,-1)
+GUICtrlSetOnEvent(-1,"_paypalme")
+GUICtrlSetFont(-1,10,400,4,"MS Sans Serif")
+GUICtrlSetColor(-1,"0x5B7AD8")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlSetCursor(-1, 0)
+GUICtrlCreateLabel("schiffer-soft",522,403,68,15,-1,-1)
+GUICtrlSetOnEvent(-1,"_Xschiffersoft")
+GUICtrlSetFont(-1,10,400,4,"MS Sans Serif")
+GUICtrlSetColor(-1,"0x5B7AD8")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlSetCursor(-1, 0)
+GUICtrlCreateLabel("&&",594,404,10,15,-1,-1)
+GUICtrlSetState(-1,$GUI_SHOW)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xC0C0C0")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("| © 2025 |",467,404,52,15,$SS_RIGHT,-1)
+GUICtrlSetState(-1,$GUI_SHOW)
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xC0C0C0")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlCreateLabel("MaxKlaxx",607,403,55,15,-1,-1)
+GUICtrlSetOnEvent(-1,"_Xmaxklaxx")
+GUICtrlSetFont(-1,10,400,4,"MS Sans Serif")
+GUICtrlSetColor(-1,"0x5B7AD8")
+GUICtrlSetBkColor(-1,"-2")
+GUICtrlSetCursor(-1, 0)
+GUICtrlCreateButton("🔗 Help",600,8,60,27,-1,-1)
+GUICtrlSetOnEvent(-1,"_button_help")
+GUICtrlSetFont(-1,10,400,0,"MS Sans Serif")
+GUICtrlSetColor(-1,"0xFFFFFF")
+GUICtrlSetBkColor(-1,"0xFA6831")
+GUICtrlSetTip(-1,"Get help on the github site.")
+GUICtrlSetCursor(-1, 0)
+
+
+
+#cs
+[gui]
+Handle_deklaration=default
+Handle_deklaration_const=false
+title=ColorTransferGui
+breite=676
+hoehe=456
+style=$WS_SYSMENU
+exstyle=-1
+bgcolour=0x2B2B2B
+bgimage=none
+handle=$colortransfer
+parent=
+code=
+codebeforegui=
+xpos=-1
+ypos=-1
+center_gui=true
+title_textmode=normal
+isf_include_once=false
+isf_no_includes=false
+only_controls_in_isf=false
+const_modus=default
+gui_code_in_function=false
+gui_code_in_function_name=
+gui_code_in_function_mode=gui
+gui_code_in_function_map_name=
+gui_event_close=_exit
+gui_event_minimize=
+gui_event_restore=
+gui_event_maximize=
+gui_event_mousemove=
+gui_event_primarydown=
+gui_event_primaryup=
+gui_event_secoundarydown=
+gui_event_secoundaryup=
+gui_event_resized=
+gui_event_dropped=
+defaultfont=MS Sans Serif
+defaultfontsize=8
+[0x00372834]
+type=input
+handle=445
+locked=0
+resize=
+x=10
+y=8
+width=535
+height=25
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_inputfile
+text=Select inputfile ...
+state=$GUI_SHOW+$GUI_ENABLE+$GUI_DISABLE
+style=$ES_READONLY
+exstyle=$WS_EX_CLIENTEDGE
+bgcolour=0x2B2B2B
+code=
+order=0
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x00252880]
+type=button
+handle=446
+locked=0
+resize=
+x=550
+y=8
+width=40
+height=27
+func=_button_inputfile
+font=MS Sans Serif
+fontsize=10
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_button_inputfile
+text=...
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=0xFA6831
+code=
+order=2
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x0014273E]
+type=label
+handle=447
+locked=0
+resize=
+x=10
+y=52
+width=179
+height=180
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0x000000
+id=
+text=
+state=$GUI_SHOW
+style=
+exstyle=
+bgcolour=0x555555
+code=
+order=3
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x00022536]
+type=label
+handle=448
+locked=0
+resize=
+x=10
+y=50
+width=160
+height=20
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=Fusion 360 3mf
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTER+$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+order=4
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x00022534]
+type=label
+handle=449
+locked=0
+resize=
+x=20
+y=80
+width=45
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=Color 1
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=5
+[0x00022532]
+type=label
+handle=450
+locked=0
+resize=
+x=20
+y=110
+width=45
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=Color 2
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=6
+[0x00022530]
+type=label
+handle=451
+locked=0
+resize=
+x=20
+y=140
+width=45
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=Color 3
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=7
+[0x0002252E]
+type=label
+handle=452
+locked=0
+resize=
+x=20
+y=170
+width=45
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=Color 4
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=8
+[0x0002252C]
+type=label
+handle=453
+locked=0
+resize=
+x=20
+y=200
+width=45
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=Color 5
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=9
+[0x0002252A]
+type=label
+handle=454
+locked=0
+resize=
+x=70
+y=80
+width=100
+height=20
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_lable_c1
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=10
+[0x00022528]
+type=label
+handle=455
+locked=0
+resize=
+x=70
+y=110
+width=100
+height=20
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_lable_c2
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=11
+[0x00022526]
+type=label
+handle=456
+locked=0
+resize=
+x=70
+y=140
+width=100
+height=20
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_lable_c3
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=12
+[0x00022524]
+type=label
+handle=457
+locked=0
+resize=
+x=70
+y=170
+width=100
+height=20
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_lable_c4
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=13
+[0x00022522]
+type=label
+handle=458
+locked=0
+resize=
+x=70
+y=200
+width=100
+height=20
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_lable_c5
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=14
+[0x00022520]
+type=label
+handle=459
+locked=0
+resize=
+x=189
+y=111
+width=52
+height=54
+func=
+font=@Arial Unicode MS
+fontsize=50
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=>
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTER+$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=15
+[0x0002251E]
+type=label
+handle=460
+locked=0
+resize=
+x=240
+y=50
+width=260
+height=180
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0x000000
+id=
+text=
+state=$GUI_SHOW+$GUI_DISABLE
+style=
+exstyle=
+bgcolour=0x555555
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=16
+[0x0002251C]
+type=label
+handle=461
+locked=0
+resize=
+x=240
+y=52
+width=260
+height=20
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=Prusa Slicer 3mf
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTER+$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=17
+[0x0002251A]
+type=label
+handle=462
+locked=0
+resize=
+x=249
+y=81
+width=50
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=Extruder 1
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=18
+[0x00022518]
+type=label
+handle=463
+locked=0
+resize=
+x=249
+y=111
+width=50
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=Extruder 2
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=19
+[0x00022516]
+type=label
+handle=464
+locked=0
+resize=
+x=249
+y=141
+width=50
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=Extruder 3
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=20
+[0x00022514]
+type=label
+handle=465
+locked=0
+resize=
+x=249
+y=171
+width=50
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=Extruder 4
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=21
+[0x00022512]
+type=label
+handle=466
+locked=0
+resize=
+x=249
+y=201
+width=50
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=Extruder 5
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=22
+[0x00022510]
+type=label
+handle=467
+locked=0
+resize=
+x=312
+y=81
+width=94
+height=20
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_lable_e1
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=23
+[0x0002250E]
+type=label
+handle=468
+locked=0
+resize=
+x=312
+y=111
+width=94
+height=20
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_lable_e2
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=24
+[0x0002250C]
+type=label
+handle=469
+locked=0
+resize=
+x=312
+y=141
+width=94
+height=20
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_lable_e3
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=25
+[0x00022508]
+type=label
+handle=470
+locked=0
+resize=
+x=312
+y=171
+width=94
+height=20
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_lable_e4
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=26
+[0x00022506]
+type=label
+handle=471
+locked=0
+resize=
+x=312
+y=201
+width=94
+height=20
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_lable_e5
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=$SS_CENTERIMAGE
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=27
+[0x00022504]
+type=edit
+handle=472
+locked=0
+resize=
+x=10
+y=247
+width=653
+height=150
+func=
+font=Lucida Console
+fontsize=9
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_console
+text=
+state=$GUI_SHOW
+style=$ES_READONLY+$ES_NOHIDESEL+$ES_MULTILINE+$WS_VSCROLL
+exstyle=$WS_EX_STATICEDGE
+bgcolour=0x555555
+code=
+order=28
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x00022502]
+type=button
+handle=473
+locked=0
+resize=
+x=448
+y=76
+width=27
+height=27
+func=button_ext1_d
+font=MS Sans Serif
+fontsize=10
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_button_ext1_d
+text=˅
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=0xFA6831
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=30
+[0x00022500]
+type=button
+handle=474
+locked=0
+resize=
+x=448
+y=107
+width=27
+height=27
+func=button_ext2_d
+font=MS Sans Serif
+fontsize=10
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_button_ext2_d
+text=˅
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=0xFA6831
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=31
+[0x000224FE]
+type=button
+handle=475
+locked=0
+resize=
+x=415
+y=107
+width=27
+height=27
+func=button_ext2_u
+font=MS Sans Serif
+fontsize=10
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_button_ext2_u
+text=˄
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=0xFA6831
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=32
+[0x000224FC]
+type=button
+handle=476
+locked=0
+resize=
+x=448
+y=137
+width=27
+height=27
+func=button_ext3_d
+font=MS Sans Serif
+fontsize=10
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_button_ext3_u
+text=˅
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=0xFA6831
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=33
+[0x000224FA]
+type=button
+handle=477
+locked=0
+resize=
+x=415
+y=137
+width=27
+height=27
+func=button_ext3_u
+font=MS Sans Serif
+fontsize=10
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_button_ext3_d
+text=˄
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=0xFA6831
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=34
+[0x000224F8]
+type=button
+handle=478
+locked=0
+resize=
+x=448
+y=167
+width=27
+height=27
+func=button_ext4_d
+font=MS Sans Serif
+fontsize=10
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_button_ext4_d
+text=˅
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=0xFA6831
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=35
+[0x000224F6]
+type=button
+handle=479
+locked=0
+resize=
+x=415
+y=167
+width=27
+height=27
+func=button_ext4_u
+font=MS Sans Serif
+fontsize=10
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_button_ext4_u
+text=˄
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=0xFA6831
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=36
+[0x000224F4]
+type=button
+handle=480
+locked=0
+resize=
+x=415
+y=197
+width=27
+height=27
+func=button_ext5_u
+font=MS Sans Serif
+fontsize=10
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_button_ext5_u
+text=˄
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=0xFA6831
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=38
+[0x000224F2]
+type=label
+handle=481
+locked=0
+resize=
+x=406
+y=404
+width=59
+height=15
+func=_currentversionlink
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=4
+tooltip=
+bgimage=
+textcolour=0x5B7AD8
+id=$h_label_version
+text=v 0.0.0.0
+state=$GUI_SHOW
+style=$SS_RIGHT
+exstyle=
+bgcolour=-2
+code=GUICtrlSetCursor(-1, 0)
+order=37
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x000224F0]
+type=button
+handle=482
+locked=0
+resize=
+x=515
+y=201
+width=147
+height=30
+func=_ConvertSave
+font=MS Sans Serif
+fontsize=8
+fontstyle=700
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xFFFFFF
+id=$h_button_ConvertSave
+text=Convert && Save as ...
+state=$GUI_SHOW+$GUI_DISABLE
+style=
+exstyle=
+bgcolour=0xFA6831
+code=
+order=38
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x000224EE]
+type=image
+handle=483
+locked=0
+resize=
+x=516
+y=50
+width=144
+height=144
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0x000000
+id=$h_image
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=
+code=
+order=39
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x000224EC]
+type=label
+handle=484
+locked=0
+resize=
+x=10
+y=404
+width=160
+height=15
+func=_paypalme
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=4
+tooltip=
+bgimage=
+textcolour=0x5B7AD8
+id=
+text=Like it? Buy us a coffee ;-)
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=-2
+code=GUICtrlSetCursor(-1, 0)
+order=40
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x000224EA]
+type=label
+handle=485
+locked=0
+resize=
+x=522
+y=403
+width=68
+height=15
+func=_Xschiffersoft
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=4
+tooltip=
+bgimage=
+textcolour=0x5B7AD8
+id=
+text=schiffer-soft
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=-2
+code=GUICtrlSetCursor(-1, 0)
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=41
+[0x001725FC]
+type=label
+handle=495
+locked=0
+resize=
+x=594
+y=404
+width=10
+height=15
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xC0C0C0
+id=
+text=&&
+state=$GUI_SHOW
+style=
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=43
+[0x0008250A]
+type=label
+handle=496
+locked=0
+resize=
+x=607
+y=403
+width=55
+height=15
+func=_Xmaxklaxx
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=4
+tooltip=
+bgimage=
+textcolour=0x5B7AD8
+id=
+text=MaxKlaxx
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=-2
+code=GUICtrlSetCursor(-1, 0)
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=44
+[0x003E272C]
+type=label
+handle=494
+locked=0
+resize=
+x=467
+y=404
+width=52
+height=15
+func=
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0xC0C0C0
+id=
+text=| © 2025 |
+state=$GUI_SHOW
+style=$SS_RIGHT
+exstyle=
+bgcolour=-2
+code=
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=44
+[0x00502888]
+type=button
+handle=486
+locked=0
+resize=
+x=600
+y=8
+width=60
+height=27
+func=_button_help
+font=MS Sans Serif
+fontsize=10
+fontstyle=400
+fontattribute=0
+tooltip=Get help on the github site.
+bgimage=
+textcolour=0xFFFFFF
+id=
+text=🔗 Help
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=0xFA6831
+code=GUICtrlSetCursor(-1, 0)
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+order=45
+#ce
