@@ -11,8 +11,13 @@ import (
 	"strings"
 )
 
+func StrFl(val float64) string {
+	return strconv.FormatFloat(val, 'f', -1, 64)
+}
+
 func main() {
-	//os.Args = append(os.Args, "Crew 9 v101.3mf")
+	//os.Args = append(os.Args, "Flame.3mf", "Flame_fix.3mf")
+	//os.Args = append(os.Args, "Crew9.3mf", "Crew9_fix.3mf")
 	if len(os.Args) < 2 {
 		fmt.Println("Usage: colortransfer <inputfile> <outputfile> hexcodes")
 		fmt.Println()
@@ -44,6 +49,18 @@ func main() {
 	}
 	if len(model.Resources.ColorGroups) < 2 {
 		fmt.Println("Error: No 3MF-Colors found.")
+		os.Exit(1)
+		return
+	}
+
+	for i := len(model.Resources.Objects) - 1; i >= 0; i-- {
+		if len(model.Resources.Objects[i].Mesh.Triangles) == 0 {
+			model.Resources.ColorGroups = append(model.Resources.ColorGroups[:i], model.Resources.ColorGroups[i+1:]...)
+			model.Resources.Objects = append(model.Resources.Objects[:i], model.Resources.Objects[i+1:]...)
+		}
+	}
+	if len(model.Resources.ColorGroups) < 2 {
+		fmt.Println("Error: No Models found.")
 		os.Exit(1)
 		return
 	}
@@ -137,11 +154,24 @@ func main() {
 	model2.Metadata = model.Metadata
 	model2.Resources.Objects = append(model2.Resources.Objects, tmf.Object{ID: 1, Type: "model", Mesh: tmf.Mesh{Vertices: verts, Triangles: tris}})
 
+	centerX := 0.0
+	centerY := 0.0
+	lowZ := 1000000.0
+	for _, v := range verts {
+		centerX += v.X
+		centerY += v.Y
+		if v.Z < lowZ {
+			lowZ = v.Z
+		}
+	}
+	centerX /= float64(len(verts))
+	centerY /= float64(len(verts))
+
 	if dest, err := xml.Marshal(model2); err != nil {
 		log.Fatal(err)
 	} else {
 		name := model2.Metadata[0].Value
-		modelXml = string(dest)[:len(dest)-8] + "<build><item objectid=\"1\" transform=\"1 0 0 0 1 0 0 0 1 175 180 60\" printable=\"1\"/></build></model>"
+		modelXml = string(dest)[:len(dest)-8] + "<build><item objectid=\"1\" transform=\"1 0 0 0 1 0 0 0 1 " + StrFl(180.0-centerX) + " " + StrFl(180.0-centerY) + " " + StrFl(-lowZ) + "\" printable=\"1\"/></build></model>"
 		modelXml = `<?xml version="1.0" encoding="UTF-8"?>
 	<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:slic3rpe="http://schemas.slic3r.org/3mf/2017/06">
 	<metadata name="slic3rpe:Version3mf">1</metadata>
@@ -153,7 +183,7 @@ func main() {
 	<metadata name="Rating"></metadata>
 	<metadata name="CreationDate">2024-10-09</metadata>
 	<metadata name="ModificationDate">2024-10-09</metadata>
-	<metadata name="Application">PrusaSlicer-2.8.1+win64</metadata>
+	<metadata name="Application">PrusaSlicer-2.9.1+win64</metadata>
 	` + modelXml[7:]
 		modelXml = strings.ReplaceAll(modelXml, "></vertex>", " />")
 		modelXml = strings.ReplaceAll(modelXml, "></triangle>", " />")
