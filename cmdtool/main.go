@@ -22,7 +22,7 @@ func Println(a ...any) {
 }
 
 func main() {
-	os.Args = append(os.Args, "Crew9.3mf", "Crew9_mk4s2.3mf", "Form-Kubus.3mf", "#002BA2;#092A60;#5375C3;#87A9EC;#EEE13E")
+	//os.Args = append(os.Args, "Crew9.3mf", "Crew9_mk4s2.3mf", "Form-Kubus.3mf", "#002BA2;#092A60;#5375C3;#87A9EC;#EEE13E")
 	//os.Args = append(os.Args, "Crew9.3mf", "Crew9_fix.3mf")
 	if len(os.Args) < 2 {
 		Println("Usage: colortransfer <inputfile> <outputfile> hexcodes")
