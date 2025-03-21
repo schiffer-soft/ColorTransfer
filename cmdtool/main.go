@@ -156,6 +156,9 @@ func main() {
 		for _, tri := range obj.Mesh.Triangles {
 			tris = append(tris, tmf.Triangle{V1: vertOfs + tri.V1, V2: vertOfs + tri.V2, V3: vertOfs + tri.V3})
 		}
+		if len(model.Resources.ColorGroups[objIndex].Colors) > 2 {
+			Println("too many colors per object:", obj.Name, "-", len(model.Resources.ColorGroups[objIndex].Colors)-1)
+		}
 		config.Objects[0].Volumes = append(config.Objects[0].Volumes, tmf.Volume{
 			FirstID:  len(tris) - len(obj.Mesh.Triangles),
 			LastID:   len(tris) - 1,
@@ -176,29 +179,31 @@ func main() {
 	const bedShape = "; bed_shape = "
 	const extColor = "; extruder_colour = "
 	const filColor = "; filament_colour = "
-	if tmp := tmf.GetModelFrom3mfFile(os.Args[3]); strings.Contains(tmp, bedShape) && strings.Contains(tmp, extColor) && strings.Contains(tmp, filColor) {
-		p := strings.Index(tmp, bedShape)
-		p2 := strings.IndexByte(tmp[p:], '\n') + p
-		if sp := strings.Split(tmp[p+len(bedShape):p2], ","); len(sp) == 4 {
-			sp = strings.Split(sp[2], "x")
-			if len(sp) == 2 {
-				w, _ := strconv.ParseFloat(sp[0], 64)
-				h, _ := strconv.ParseFloat(sp[1], 64)
-				if w > 10 && w < 100000 {
-					bedWidth = w
-				}
-				if h > 10 && h < 100000 {
-					bedHeight = h
+	if len(os.Args) > 3 {
+		if tmp := tmf.GetModelFrom3mfFile(os.Args[3]); strings.Contains(tmp, bedShape) && strings.Contains(tmp, extColor) && strings.Contains(tmp, filColor) {
+			p := strings.Index(tmp, bedShape)
+			p2 := strings.IndexByte(tmp[p:], '\n') + p
+			if sp := strings.Split(tmp[p+len(bedShape):p2], ","); len(sp) == 4 {
+				sp = strings.Split(sp[2], "x")
+				if len(sp) == 2 {
+					w, _ := strconv.ParseFloat(sp[0], 64)
+					h, _ := strconv.ParseFloat(sp[1], 64)
+					if w > 10 && w < 100000 {
+						bedWidth = w
+					}
+					if h > 10 && h < 100000 {
+						bedHeight = h
+					}
 				}
 			}
+			p = strings.Index(tmp, extColor)
+			p2 = strings.IndexByte(tmp[p:], '\n') + p
+			tmp = tmp[:p] + extColor + "{{colors}}" + tmp[p2:]
+			p = strings.Index(tmp, filColor)
+			p2 = strings.IndexByte(tmp[p:], '\n') + p
+			tmp = tmp[:p] + filColor + "{{colors}}" + tmp[p2:]
+			slic3rProfile = tmp
 		}
-		p = strings.Index(tmp, extColor)
-		p2 = strings.IndexByte(tmp[p:], '\n') + p
-		tmp = tmp[:p] + extColor + "{{colors}}" + tmp[p2:]
-		p = strings.Index(tmp, filColor)
-		p2 = strings.IndexByte(tmp[p:], '\n') + p
-		tmp = tmp[:p] + filColor + "{{colors}}" + tmp[p2:]
-		slic3rProfile = tmp
 	}
 
 	centerX := 0.0
